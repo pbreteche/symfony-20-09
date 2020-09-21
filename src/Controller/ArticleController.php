@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,5 +34,13 @@ class ArticleController extends AbstractController
         }
 
         return $this->json($article);
+    }
+
+    /**
+     * @Route("/article/{id}/show", requirements={"id": "\d+"})
+     */
+    public function show2(Post $post)
+    {
+        return $this->json($post);
     }
 }

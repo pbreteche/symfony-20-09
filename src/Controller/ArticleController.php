@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/article", methods={"GET", "POST"})
+     * @Route("/article", methods="GET")
      */
-    public function index()
+    public function index(PostRepository $repository)
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ArticleController.php',
-        ]);
+        $articles = $repository->findAll();
+
+        return $this->json($articles);
     }
 }

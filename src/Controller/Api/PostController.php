@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Post;
 use App\Repository\PostRepository;
@@ -8,10 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController extends AbstractController
+/**
+ * @Route("/article", methods="GET")
+ */
+class PostController extends AbstractController
 {
     /**
-     * @Route("/article", methods="GET")
+     * @Route("/")
      */
     public function index(PostRepository $repository)
     {
@@ -21,7 +24,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/article/{id}", requirements={"id": "\d+"})
+     * @Route("/{id}", requirements={"id": "\d+"})
      */
     public function show(int $id, PostRepository $repository, Request $request)
     {
@@ -37,7 +40,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/article/{id}/show", requirements={"id": "\d+"})
+     * @Route("/{id}/show", requirements={"id": "\d+"})
      */
     public function show2(Post $post)
     {

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article", methods="GET")
+ * @Route("/api/article", methods="GET")
  */
 class PostController extends AbstractController
 {

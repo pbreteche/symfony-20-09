@@ -4,7 +4,10 @@ namespace App\Controller\Portal;
 
 use App\Entity\Post;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -38,7 +41,7 @@ class PostController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"})
      */
-    public function create()
+    public function create(Request $request, EntityManagerInterface $manager)
     {
         $newPost = new Post();
         $newPost->setPublishedAt(new \DateTime());
@@ -47,6 +50,19 @@ class PostController extends AbstractController
             ->add('title')
             ->add('author')
             ->getForm();
+
+        $createForm->handleRequest($request);
+
+        if ($createForm->isSubmitted() && $createForm->isValid()) {
+            $manager->persist($newPost);
+            $manager->flush();
+
+            $this->addFlash('Success', 'Votre post a bien été créé.');
+
+            return $this->redirectToRoute('app_portal_post_show', [
+                'id' => $newPost->getId(),
+            ], Response::HTTP_SEE_OTHER);
+        }
 
         return $this->render('post/create.html.twig', [
             'create_form' => $createForm->createView(),

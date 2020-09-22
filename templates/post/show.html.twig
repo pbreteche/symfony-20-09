@@ -3,6 +3,7 @@
 {% block body %}
     <a href="{{ path('app_portal_post_index') }}">Retour à la liste</a>
     <h1>{{ post.title }}</h1>
+    <a href="{{ path('app_portal_post_update', {id: post.id}) }}">Éditer</a>
     <p>Par {{ post.author }}, le {{ post.publishedAt | date('d/m/Y') }}</p>
 {% endblock %}
 

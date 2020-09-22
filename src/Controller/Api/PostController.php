@@ -30,13 +30,13 @@ class PostController extends AbstractController
     {
         $displayMode = $request->query->get('format', 'full');
 
-        $article = $repository->find($id);
+        $post = $repository->find($id);
 
-        if (!$article) {
+        if (!$post) {
             throw $this->createNotFoundException('Article '.$id.' not found.');
         }
 
-        return $this->json($article);
+        return $this->json($post);
     }
 
     /**

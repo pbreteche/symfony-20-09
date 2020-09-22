@@ -2,6 +2,7 @@
 
 namespace App\Controller\Portal;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,16 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", requirements={"id": "\d+"})
+     */
+    public function show(Post $post)
+    {
+        return $this->render('post/show.html.twig', [
+            'post' => $post,
         ]);
     }
 }

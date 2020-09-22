@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ post.title }}</h1>
+    <p>Par {{ post.author }}, le {{ post.publishedAt | date('d/m/Y') }}</p>
+{% endblock %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}

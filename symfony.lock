@@ -306,6 +306,12 @@
             "config/routes.yaml"
         ]
     },
+    "symfony/security-core": {
+        "version": "v5.1.5"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.1.5"
+    },
     "symfony/serializer": {
         "version": "v5.1.5"
     },

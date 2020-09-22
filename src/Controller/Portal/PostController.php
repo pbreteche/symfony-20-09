@@ -3,6 +3,7 @@
 namespace App\Controller\Portal;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,10 +47,7 @@ class PostController extends AbstractController
         $newPost = new Post();
         $newPost->setPublishedAt(new \DateTime());
 
-        $createForm = $this->createFormBuilder($newPost)
-            ->add('title')
-            ->add('author')
-            ->getForm();
+        $createForm = $this->createForm(PostType::class, $newPost);
 
         $createForm->handleRequest($request);
 
@@ -74,12 +72,9 @@ class PostController extends AbstractController
      */
     public function update(Post $post, Request $request, EntityManagerInterface $manager)
     {
-        $editForm = $this->createFormBuilder($post, [
+        $editForm = $this->createForm(PostType::class, $post, [
             'method' => 'PUT'
-        ])
-            ->add('title')
-            ->add('author')
-            ->getForm();
+        ]);
 
         $editForm->handleRequest($request);
 

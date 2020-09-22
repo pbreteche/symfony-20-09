@@ -94,4 +94,15 @@ class PostController extends AbstractController
             'edit_form' => $editForm->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}", methods="DELETE")
+     */
+    public function delete(Post $post, EntityManagerInterface $manager)
+    {
+        $manager->remove($post);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_portal_post_index');
+    }
 }

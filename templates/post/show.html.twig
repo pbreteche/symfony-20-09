@@ -4,9 +4,15 @@
     <a href="{{ path('app_portal_post_index') }}">Retour à la liste</a>
     <h1>{{ post.title }}</h1>
     <a href="{{ path('app_portal_post_update', {id: post.id}) }}">Éditer</a>
+    <a class="delete-link" href="{{ path('app_portal_post_delete', {id: post.id}) }}">Supprimer</a>
     <p>Par {{ post.author }}, le {{ post.publishedAt | date('d/m/Y') }}</p>
 {% endblock %}
 
 {% block title %}
     {{ post.title }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/delete.js') }}"></script>
 {% endblock %}

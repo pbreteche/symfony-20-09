@@ -13,7 +13,9 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('author')
+            ->add('author', null, [
+                'help' => 'Commencez par une majuscule',
+            ])
         ;
     }
 

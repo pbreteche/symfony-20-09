@@ -7,12 +7,8 @@
 {% block body %}
     <h1>Édition de {{ post.title }}</h1>
 
-    {{ form_start(edit_form) }}
-
-    {{ form_widget(edit_form) }}
-
-    <button>Modifier</button>
-    {{ form_end(edit_form) }}
-
+    {{ include('form/_post_type.html.twig', {
+        post_form: edit_form,
+        submit_label: 'Mettre à jour'
+    }) }}
 {% endblock %}
-

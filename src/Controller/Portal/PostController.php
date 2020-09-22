@@ -73,7 +73,8 @@ class PostController extends AbstractController
     public function update(Post $post, Request $request, EntityManagerInterface $manager)
     {
         $editForm = $this->createForm(PostType::class, $post, [
-            'method' => 'PUT'
+            'method' => 'PUT',
+            'keep_author' => true,
         ]);
 
         $editForm->handleRequest($request);

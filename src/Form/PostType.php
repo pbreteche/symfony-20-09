@@ -11,18 +11,20 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('title')
-            ->add('author', null, [
+        $builder->add('title');
+
+        if (!$options['keep_author']) {
+            $builder->add('author', null, [
                 'help' => 'Commencez par une majuscule',
-            ])
-        ;
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
+            'keep_author' => false,
         ]);
     }
 }

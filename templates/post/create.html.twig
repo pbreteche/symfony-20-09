@@ -7,7 +7,12 @@ Nouveau post
 {% block body %}
 <h1>Nouveau post</h1>
 
-    {{ form(create_form) }}
+    {{ form_start(create_form) }}
+
+    {{ form_widget(create_form) }}
+
+    <button>Envoyer</button>
+    {{ form_end(create_form) }}
 
 {% endblock %}
 

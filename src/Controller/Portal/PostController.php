@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -21,13 +22,22 @@ class PostController extends AbstractController
     /**
      * @Route("/")
      */
-    public function index(PostRepository $repository)
+    public function index(PostRepository $repository, SessionInterface $session)
     {
         $posts = $repository->findLast();
 
-        return $this->render('post/index.html.twig', [
+        $view = $this->renderView('post/index.html.twig', [
             'posts' => $posts,
         ]);
+
+        $session->set('data_name', 'value');
+
+        $response = new Response($view);
+
+        $response->headers->set('Content-Type', 'text/html');
+        $response->setStatusCode(Response::HTTP_ACCEPTED);
+
+        return $response;
     }
 
     /**

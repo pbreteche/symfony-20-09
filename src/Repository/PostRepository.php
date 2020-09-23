@@ -54,4 +54,15 @@ class PostRepository extends ServiceEntityRepository
         )->setMaxResults(10)
             ->getResult();
     }
+
+    public function findWithAuthor(int $id)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.writtenBy', 'a')
+            ->addSelect('a')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

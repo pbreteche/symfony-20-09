@@ -47,4 +47,11 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findLast()
+    {
+        return $this->getEntityManager()->createQuery(
+            'SELECT p FROM '.Post::class.' p WHERE p.publishedAt < CURRENT_DATE() ORDER BY p.publishedAt DESC'
+        )->setMaxResults(10)
+            ->getResult();
+    }
 }

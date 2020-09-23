@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Author;
 use App\Entity\Post;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,9 @@ class PostType extends AbstractType
         $builder->add('title');
 
         if (!$options['keep_author']) {
-            $builder->add('author', null, [
+            $builder->add('writtenBy', EntityType::class, [
+                'class' => Author::class,
+                'choice_label' => 'nickname',
                 'help' => 'Commencez par une majuscule',
             ]);
         }

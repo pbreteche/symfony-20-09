@@ -20,14 +20,6 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="L'auteur doit être saisi")
-     * @Assert\Length(max=64)
-     * @Assert\Regex(pattern="#^[A-Z]#", message="Commencez par une majuscule")
-     */
-    private $author;
-
-    /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
     private $title;
@@ -46,18 +38,6 @@ class Post
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): self
-    {
-        $this->author = $author;
-
-        return $this;
     }
 
     public function getTitle(): ?string

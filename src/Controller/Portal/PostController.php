@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/post", methods="GET")
@@ -56,9 +57,9 @@ class PostController extends AbstractController
      * @Route("/new", methods={"GET", "POST"})
      * @IsGranted("ROLE_AUTHOR")
      */
-    public function create(Request $request, EntityManagerInterface $manager)
+    public function create(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator)
     {
-        if ($this->isGranted('ROLE_AUTHOR')) {
+        if (!$this->isGranted('ROLE_AUTHOR')) {
             throw $this->createAccessDeniedException();
         }
 
@@ -75,7 +76,7 @@ class PostController extends AbstractController
             $manager->persist($newPost);
             $manager->flush();
 
-            $this->addFlash('Success', 'Votre post a bien été créé.');
+            $this->addFlash('Success', $translator->trans('app.post.flash.create_success'));
 
             return $this->redirectToRoute('app_portal_post_show', [
                 'id' => $newPost->getId(),

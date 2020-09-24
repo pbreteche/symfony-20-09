@@ -9,3 +9,10 @@ app:
                 starter: Entrée
                 course:  Plat
                 dessert: Dessert
+    post:
+        flash:
+            create_success: 'Votre post a bien été créé.'
+        page:
+            index:
+                title: 'Derniers articles'
+                empty: 'Aucun post actuellement'

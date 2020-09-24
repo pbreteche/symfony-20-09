@@ -1,0 +1,4 @@
+app:
+    user:
+        error:
+            duplicate: Il y a déjà un utilisateur avec {{ value }}

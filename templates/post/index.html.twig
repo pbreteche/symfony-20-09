@@ -3,7 +3,7 @@
 {% block title %}Derniers articles{% endblock %}
 
 {% block body %}
-    <h1>{{ 'Derniers articles' | upper }}</h1>
+    <h1>{{ 'app.post.page.index.title' | trans | upper }}</h1>
     {% if is_granted('ROLE_AUTHOR') %}
         <a href="{{ path('app_portal_post_create') }}">Nouveau</a>
     {% endif %}
@@ -11,7 +11,7 @@
         {% for post in posts %}
         <li class="{% if loop.index is odd -%} odd {%- endif  %}"><a href="{{ path('app_portal_post_show', {id: post.id}) }}">{{ post.title }}</a></li>
         {% else %}
-            <li>Aucun post actuellement</li>
+            <li>{{ 'app.post.page.index.empty' | trans | upper }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

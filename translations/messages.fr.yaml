@@ -1,0 +1,5 @@
+app:
+    user:
+        fields:
+            email: Courriel
+            password: Mot de passe

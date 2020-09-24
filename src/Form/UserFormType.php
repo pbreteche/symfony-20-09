@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,8 +16,10 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles', TextType::class)
-            ->add('password')
+            ->add('roles', TextType::class, [
+                'label' => 'Roles',
+            ])
+            ->add('password', PasswordType::class)
         ;
 
         $builder->get('roles')
@@ -36,6 +39,7 @@ class UserFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'label_format' => 'app.user.fields.%name%',
         ]);
     }
 }

@@ -3,3 +3,9 @@ app:
         fields:
             email: Courriel
             password: Mot de passe
+            preferredDish: Plat préféré
+        choices:
+            preferredDish:
+                starter: Entrée
+                course:  Plat
+                dessert: Dessert

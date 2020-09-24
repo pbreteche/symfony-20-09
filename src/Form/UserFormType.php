@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +21,19 @@ class UserFormType extends AbstractType
                 'label' => 'Roles',
             ])
             ->add('password', PasswordType::class)
+            ->add('preferredDish', ChoiceType::class, [
+                'choices' => [
+                    'starter',
+                    'course',
+                    'dessert'
+                ],
+                'choice_label' => function($choice) {
+                    return 'app.user.choices.preferredDish.'.$choice;
+                },
+                'mapped' => false,
+                'expanded' => true,
+                'multiple' => true,
+            ])
         ;
 
         $builder->get('roles')

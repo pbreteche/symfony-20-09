@@ -1,0 +1,19 @@
+{% block text_label %}
+    {% if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <p>Mon label personnalisé</p>
+    <label for="{{ id }}">{{ label }}</label>
+{% endblock %}
+
+{% block user_row %}
+    <p>{{ form.vars.id }}</p>
+    <p>{{ form.email.vars.id }}</p>
+{% endblock %}

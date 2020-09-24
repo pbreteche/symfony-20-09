@@ -1,0 +1,36 @@
+body {
+  color: #333;
+}
+
+/***********************************************
+  BANNER
+************************************************/
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 1em black;
+}
+
+.banner img {
+  height: 2em;
+}
+
+.banner .sitename {
+  font-size: 2em;
+  padding: .5em;
+  color: #000;
+}
+
+.banner .user-menu a {
+  background: #3f3f3f;
+  display: block;
+  color: #333;
+  text-decoration-color: #718c00;
+}
+.banner .user-menu.logged a {
+  text-decoration-color: #b0413e;
+}
+/***********************************************
+  END BANNER
+************************************************/

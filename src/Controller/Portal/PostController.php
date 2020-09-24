@@ -58,9 +58,11 @@ class PostController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
-        if (false) {
+        if ($this->isGranted('ROLE_AUTHOR')) {
             throw $this->createAccessDeniedException();
         }
+
+        $this->denyAccessUnlessGranted('ROLE_AUTHOR');
 
         $newPost = new Post();
         $newPost->setPublishedAt(new \DateTime());

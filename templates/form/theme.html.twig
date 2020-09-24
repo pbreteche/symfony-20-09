@@ -1,16 +1,8 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
 {% block text_label %}
-    {% if label is empty -%}
-        {%- if label_format is not empty -%}
-            {% set label = label_format|replace({
-                '%name%': name,
-                '%id%': id,
-            }) %}
-        {%- else -%}
-            {% set label = name|humanize %}
-        {%- endif -%}
-    {%- endif -%}
-    <p>Mon label personnalisé</p>
-    <label for="{{ id }}">{{ label }}</label>
+    <p>Mon label personnalisé pour {{ name }}</p>
+    {{- block('form_label') -}}
 {% endblock %}
 
 {% block user_row %}

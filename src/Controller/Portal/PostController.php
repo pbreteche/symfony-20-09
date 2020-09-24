@@ -7,6 +7,7 @@ use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,9 +54,14 @@ class PostController extends AbstractController
 
     /**
      * @Route("/new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_AUTHOR")
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
+        if (false) {
+            throw $this->createAccessDeniedException();
+        }
+
         $newPost = new Post();
         $newPost->setPublishedAt(new \DateTime());
 

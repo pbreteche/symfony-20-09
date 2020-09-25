@@ -16,7 +16,12 @@ app:
                     Merci de confirmer votre adresse email en cliquant sur le lien suivant: <br><br>
                     <a href="{url}">Confirmer mon email</a>.
                     This link will expire in {expires} hour(s).
-                cheers: Cordialement
+                cheers: >-
+                    {length, select,
+                        regular {Mes cordiales salutations}
+                        long {Je vous prie d'agréer mes plus cordiales salutations}
+                        other {Cordialement}
+                    }
     post:
         flash:
             create_success: Votre post a bien été créé.

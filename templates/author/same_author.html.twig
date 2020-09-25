@@ -1,0 +1,7 @@
+<nav>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{{ path('app_portal_post_show', {id: post.id}) }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

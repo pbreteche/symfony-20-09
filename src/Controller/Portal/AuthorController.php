@@ -3,6 +3,7 @@
 namespace App\Controller\Portal;
 
 use App\Entity\Author;
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,15 @@ class AuthorController extends AbstractController
 
         return $this->render('author/index_posts.html.twig', [
             'author' => $author,
+            'posts' => $posts,
+        ]);
+    }
+
+    public function sameAuthorPosts(Post $post, PostRepository $repository)
+    {
+        $posts = $repository->findByPostSameAuthor($post);
+
+        return $this->render('author/same_author.html.twig', [
             'posts' => $posts,
         ]);
     }

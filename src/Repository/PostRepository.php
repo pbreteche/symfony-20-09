@@ -65,4 +65,19 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findByPostSameAuthor(Post $post)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb
+            ->andWhere('p.writtenBy = :author')
+            ->andWhere($qb->expr()->neq('p.id', ':id'))
+            ->getQuery()
+            ->setParameters([
+                'author' => $post->getWrittenBy(),
+                'id' => $post->getId(),
+            ])
+            ->getResult();
+    }
 }

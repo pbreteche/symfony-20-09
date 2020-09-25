@@ -2,11 +2,26 @@
 
 namespace App\Validator;
 
+use App\Repository\UserRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class PrimeVerifier extends ConstraintValidator
 {
+
+    /**
+     * @var UserRepository
+     */
+    private $repository;
+
+    /**
+     * PrimeVerifier constructor.
+     */
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function validate($value, Constraint $constraint)
     {
         /* @var $constraint \App\Validator\Prime */

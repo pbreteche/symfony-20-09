@@ -35,3 +35,8 @@ services:
 
     App\Math\CalculatorInterface:
         alias: App\Math\AdderBis
+
+    # complètement inutile depuis autowire + autoconfigure
+    App\Validator\PrimeVerifier:
+        class: App\Validator\PrimeVerifier
+        tags: [validator.constraint_validator]

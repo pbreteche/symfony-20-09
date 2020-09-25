@@ -1,11 +1,14 @@
-<h1>Hi! Please confirm your email!</h1>
+{% autoescape false %}
+<h1>{{ 'app.user.registration.confirmation_mail.hi' | trans }}</h1>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAt|date('g') }} hour(s).
+    {{ 'app.user.registration.confirmation_mail.body' | trans({
+        '%url%': signedUrl,
+        '%expires%': expiresAt|date('g')
+    }) }}
 </p>
 
 <p>
-    Cheers!
+    {{ 'app.user.registration.confirmation_mail.cheers' | trans }}
 </p>
+{% endautoescape %}

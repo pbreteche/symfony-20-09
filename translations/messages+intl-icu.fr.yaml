@@ -14,8 +14,8 @@ app:
                 hi: Salut! Merci de confirmer votre email!
                 body: |
                     Merci de confirmer votre adresse email en cliquant sur le lien suivant: <br><br>
-                    <a href="%url%">Confirmer mon email</a>.
-                    This link will expire in %expires% hour(s).
+                    <a href="{url}">Confirmer mon email</a>.
+                    This link will expire in {expires} hour(s).
                 cheers: Cordialement
     post:
         flash:

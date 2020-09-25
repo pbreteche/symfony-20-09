@@ -3,8 +3,8 @@
 
 <p>
     {{ 'app.user.registration.confirmation_mail.body' | trans({
-        '%url%': signedUrl,
-        '%expires%': expiresAt|date('g')
+        url: signedUrl,
+        expires: expiresAt|date('g')
     }) }}
 </p>
 

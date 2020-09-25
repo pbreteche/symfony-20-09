@@ -46,17 +46,22 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      * @Entity("post", expr="repository.findWithAuthor(id)")
-     * @Cache(expires="tomorrow", maxage=3600, public=true)
+     * @Cache(expires="+2 days", maxage=3600, public=true)
      */
     public function show(Post $post, Request $request)
     {
-        $response = $this->render('post/show.html.twig', [
-            'post' => $post,
-        ]);
-        $response->setEtag(md5($response->getContent()));
+        $response = new Response();
+        $response->setEtag(md5($post->getTitle()));
         $response->setPublic();
 
-        $response->isNotModified($request);
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        $response->setContent($this->renderView('post/show.html.twig', [
+            'post' => $post,
+        ]));
+
         return $response;
     }
 

@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,12 +46,17 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      * @Entity("post", expr="repository.findWithAuthor(id)")
+     * @Cache(expires="tomorrow", maxage=3600, public=true)
      */
-    public function show(Post $post)
+    public function show(Post $post, Request $request)
     {
-        return $this->render('post/show.html.twig', [
+        $response = $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
+        $response->setEtag(md5($response->getContent()));
+        $response->setPublic();
+
+        return $response->isNotModified($request);
     }
 
     /**

@@ -56,7 +56,8 @@ class PostController extends AbstractController
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
 
-        return $response->isNotModified($request);
+        $response->isNotModified($request);
+        return $response;
     }
 
     /**

@@ -34,4 +34,4 @@ services:
         arguments: {$unit: km}
 
     App\Math\CalculatorInterface:
-        alias: App\Math\Adder
+        alias: App\Math\AdderBis

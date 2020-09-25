@@ -4,7 +4,7 @@ namespace App\Math;
 
 use Psr\Log\LoggerInterface;
 
-class Adder
+class Adder implements CalculatorInterface
 {
 
     /**
@@ -22,7 +22,7 @@ class Adder
         $this->unit = $unit;
     }
 
-    public function calculate(int $a, int $b)
+    public function calculate(int $a, int $b): string
     {
         $this->logger->debug('Addition de '.$a.' et '.$b);
         return ($a + $b).$this->unit;

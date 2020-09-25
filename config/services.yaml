@@ -32,3 +32,6 @@ services:
 
     App\Math\Adder:
         arguments: {$unit: km}
+
+    App\Math\CalculatorInterface:
+        alias: App\Math\Adder

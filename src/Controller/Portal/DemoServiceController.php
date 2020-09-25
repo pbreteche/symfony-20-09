@@ -2,7 +2,7 @@
 
 namespace App\Controller\Portal;
 
-use App\Math\Adder;
+use App\Math\CalculatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ class DemoServiceController extends AbstractController
     /**
      * @Route("")
      */
-    public function index(Adder $adder)
+    public function index(CalculatorInterface $adder)
     {
         return new Response($adder->calculate(3, 4), 200, [
             'Content-Type' => 'text/plain',

@@ -7,8 +7,8 @@
     <a class="delete-link" href="{{ path('app_portal_post_delete', {id: post.id}) }}">Supprimer</a>
     <p>Par <a href="{{ path('app_portal_author_indexposts', {id: post.writtenBy.id}) }}">{{ post.writtenBy.nickname }}</a>, le {{ post.publishedAt | date('d/m/Y') }}</p>
 
-    {{ render(controller('App\\Controller\\Portal\\AuthorController::sameAuthorPosts', {
-        post: post
+    {{ render_esi(controller('App\\Controller\\Portal\\AuthorController::sameAuthorPosts', {
+        post: post.id
     })) }}
 {% endblock %}
 

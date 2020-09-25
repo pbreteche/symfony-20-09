@@ -11,7 +11,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-            $unit: inch
+            $unit: '%env(APP_UNIT)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -33,7 +33,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Math\CalculatorInterface:
-        alias: App\Math\AdderBis
+        alias: App\Math\Adder
 
     # complètement inutile depuis autowire + autoconfigure
     App\Validator\PrimeVerifier:
